@@ -1,0 +1,17 @@
+import pennylane as qml
+import numpy as np
+
+# Create quantum device with one qubit
+dev = qml.device('default.qubit', wires=1)
+
+@qml.qnode(dev)
+def x_gate_circuit():
+    # Apply X gate (NOT gate)
+    qml.PauliX(wires=0)
+    
+    # Measure in computational basis
+    return qml.probs(wires=0)
+
+# Execute circuit
+result = x_gate_circuit()
+print(f"Measurement probabilities: |0⟩: {result[0]}, |1⟩: {result[1]}")
